@@ -14,7 +14,7 @@ on:
       - 'traditional_ml_deployment_pipeLine/**'
 
 jobs:
-  train&save:
+  trainSave:
     runs-on: ubuntu-latest
     strategy:
       matrix:

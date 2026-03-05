@@ -36,11 +36,12 @@ jobs:
           pip install -r traditional_ml_deployment_pipeLine/requirements.txt
       - name: run train file    
         run: python traditional_ml_deployment_pipeLine/train.py 
+
       - name: Upload training outputs
         uses: actions/upload-artifact@v4
         with:
           name: training-output
-          path: python traditional_ml_deployment_pipeLine/artifacts/
+          path: traditional_ml_deployment_pipeLine/artifacts
           
 
 

@@ -15,7 +15,6 @@ on:
 
 jobs:
   train&save:
-  - name: "train and save model"
     run-on: ubuntu-latest
     strategy:
       matrix:

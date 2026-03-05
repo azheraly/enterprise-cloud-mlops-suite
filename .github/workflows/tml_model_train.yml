@@ -35,7 +35,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r traditional_ml_deployment_pipeLine/requirements.txt
       - name: run train file    
-        run: python train.py 
+        run: python traditional_ml_deployment_pipeLine/train.py 
     
 
 

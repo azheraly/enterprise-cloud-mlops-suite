@@ -15,7 +15,7 @@ on:
 
 jobs:
   train&save:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ['3.11', '3.12','3.12.4' ]

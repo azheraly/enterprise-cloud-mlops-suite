@@ -1,0 +1,30 @@
+name: Pull Request Workflow
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: python version
+        run: python --version
+
+      - name: show files in the repository
+        run: ls
+      
+      - name: save code
+        uses: actions/upload-artifact@v4
+        with:
+          name: mycode
+          path: segemaker/*
+          if-no-files-found: error

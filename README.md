@@ -16,7 +16,6 @@ This document tracks my ongoing journey in **MLOps**, including experiments, too
 
 ---
 
-
 ## Project Overview
 
 **Goal:** Deploy scalable and maintainable ML models with full lifecycle management.  

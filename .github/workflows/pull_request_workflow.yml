@@ -26,5 +26,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mycode
-          path: segemakerX/*
+          path: segemaker/*
           if-no-files-found: error

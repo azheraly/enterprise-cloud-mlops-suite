@@ -1,0 +1,37 @@
+name: "My Custom Action"
+description: "Composite action"
+inputs:
+  python-version:
+    description: "Python version to use"
+    required: true
+
+
+runs:
+  using: "composite"
+  steps:
+    - run: echo "Using Python version ${{ inputs.python-version }}"
+      shell: bash
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        
+    - name: python version
+      run: python --version
+
+    - name: save code file to artifact for later use
+      uses: actions/upload-artifact@v4
+      with:
+          name: mycodefiles
+          path: segemaker/*
+          if-no-files-found: error
+
+
+
+
+# upload-artifact = save file
+# download-artifact = load file later

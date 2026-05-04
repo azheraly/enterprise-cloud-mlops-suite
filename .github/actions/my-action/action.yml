@@ -21,6 +21,7 @@ runs:
         
     - name: python version
       run: python --version
+      shell: bash
 
     - name: save code file to artifact for later use
       uses: actions/upload-artifact@v4

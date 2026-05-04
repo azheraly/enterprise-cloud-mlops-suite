@@ -7,6 +7,8 @@ on:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
+
+
 # Each branch has its own queue
 # Only one run per branch at a time
 # New push → cancels previous run on that branch
@@ -44,6 +46,7 @@ jobs:
         uses: ./.github/actions/my-action
         with:
           python-version: '3.12'
+
 
   dev:
     needs: build

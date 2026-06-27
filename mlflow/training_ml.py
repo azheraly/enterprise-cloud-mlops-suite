@@ -12,7 +12,7 @@ from sklearn.metrics import (
 )
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import pickle
 # Set the tracking URI to a local database URI (e.g., sqlite:///mlflow.db).
 # This is recommended option for quickstart and local development.
 mlflow.set_tracking_uri("sqlite:///mlflow.db")
@@ -37,7 +37,6 @@ params = {
 
 # Step  - Log a model and metadata manually
 
-
 # Start an MLflow run
 with mlflow.start_run():
     # Log the hyperparameters
@@ -48,8 +47,12 @@ with mlflow.start_run():
     lr.fit(X_train, y_train)
 
     # Log the model
-    model_info = mlflow.sklearn.log_model(sk_model=lr, name="iris_model")
-
+    model_info = mlflow.sklearn.log_model(lr, name="Logistic_Regression_Model")
+    
+    with open("Logistic_Regression_Model.pkl", "wb") as f:
+        pickle.dump(lr, f)
+    mlflow.log_artifact("Logistic_Regression_Model.pkl")
+        
     # Predict on the test set, compute and log the loss metric
     y_pred = lr.predict(X_test)
     # Metrics
@@ -62,8 +65,9 @@ with mlflow.start_run():
     mlflow.log_metric("precision", precision)
     mlflow.log_metric("recall", recall)
     mlflow.log_metric("f1_score", f1)
-    # Create confusion matrix
     
+    # Create confusion matrix
+
     # cm = confusion_matrix(y_test, y_pred)
     # plt.figure(figsize=(6,5))
     # sns.heatmap(
@@ -85,7 +89,10 @@ with mlflow.start_run():
 
     # Upload to MLflow
     # mlflow.log_artifact("confusion_matrix.png")
-   
+
     # Optional: Set a tag that we can use to remind ourselves what this run was for
-    mlflow.set_tag("Training Info", "Basic LR model for iris data")
+    mlflow.set_tags({"name": "azher ali"})
     mlflow.log_artifact(__file__)
+
+
+

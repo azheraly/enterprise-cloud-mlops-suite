@@ -13,10 +13,18 @@ from sklearn.metrics import (
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pickle
-# Set the tracking URI to a local database URI (e.g., sqlite:///mlflow.db).
-# This is recommended option for quickstart and local development.
-mlflow.set_tracking_uri("sqlite:///mlflow.db")
+
+import dagshub
+
+
+
+
+dagshub.init(repo_owner='azheraly009', repo_name='enterprise-cloud-mlops-suite', mlflow=True)
+
+mlflow.set_tracking_uri("https://dagshub.com/azheraly009/enterprise-cloud-mlops-suite.mlflow")
 mlflow.set_experiment("first-experiment")
+
+
 
 
 # Load the Iris dataset
@@ -33,7 +41,7 @@ params = {
     "max_iter": 1000,
     "random_state": 8888,
 }
-
+                    
 
 # Step  - Log a model and metadata manually
 
@@ -49,9 +57,9 @@ with mlflow.start_run():
     # Log the model
     model_info = mlflow.sklearn.log_model(lr, name="Logistic_Regression_Model")
     
-    with open("Logistic_Regression_Model.pkl", "wb") as f:
-        pickle.dump(lr, f)
-    mlflow.log_artifact("Logistic_Regression_Model.pkl")
+    # with open("Logistic_Regression_Model.pkl", "wb") as f:
+    #     pickle.dump(lr, f)
+    # mlflow.log_artifact("Logistic_Regression_Model.pkl")
         
     # Predict on the test set, compute and log the loss metric
     y_pred = lr.predict(X_test)

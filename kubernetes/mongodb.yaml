@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb-deployment
+  namespace: development
   labels:
     app: mongodb
 spec:
@@ -26,12 +27,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: mongodb-secret
-                  key: username
+                  key: MONGO_INITDB_ROOT_USERNAME
             - name: MONGO_INITDB_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mongodb-secret
-                  key: password
+                  key: MONGO_INITDB_ROOT_PASSWORD
 
 # Create MongoDB Service
 # Expose MongoDB inside the cluster:
@@ -40,12 +41,16 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mongodb-service
+  namespace: development
 spec:
   selector:
     app: mongodb
-
   ports:
-  - port: 27017
+  - protocol: TCP
+    port: 27017
     targetPort: 27017
 
-  clusterIP: None
+
+
+# checking 
+#  kubectl exec -it <pod-name> -- mongosh -u username -p password
